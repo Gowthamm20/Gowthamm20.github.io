@@ -27,6 +27,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -92,6 +93,8 @@
       cursor: pointer;
       box-shadow: 0 0 12px var(--accent);
       transition: transform .3s;
+      text-decoration: none;
+      display: inline-block;
     }
     .btn:hover { transform: scale(1.05); }
 
@@ -128,6 +131,28 @@
       color: var(--accent-2);
       font-size: 1.1rem;
     }
+
+    /* Skills bars */
+    .skill {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .skill-name { margin-bottom: 6px; font-weight: 600; }
+    .skill-bar {
+      height: 12px;
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      border-radius: 8px;
+      transition: width 1.2s ease-in-out;
+    }
+
     footer {
       text-align: center;
       padding: 16px;
@@ -166,7 +191,10 @@
     <h1>MyPortfolio</h1>
     <nav>
       <a href="#about">About</a>
+      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#internships">Internships</a>
+      <a href="#certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -175,7 +203,7 @@
     <div>
       <h2>Hi, I'm Gowtham 🚀</h2>
       <p>I transform raw data into meaningful stories and insights — blending analysis, creativity, and clarity to drive decisions.</p>
-      <button class="btn">Explore My Work</button>
+      <a href="#projects" class="btn">Explore My Work</a>
     </div>
   </div>
 
@@ -197,20 +225,79 @@
     </div>
   </section>
 
+  <section id="skills" class="fade-up">
+    <h3>Skills</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="skill">
+          <div class="skill-name">Python</div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">SQL</div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Tableau / PowerBI</div>
+          <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Data Visualization</div>
+          <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="projects" class="fade-up">
     <h3>Projects</h3>
     <div class="grid">
       <div class="card">
         <h4>Data Dashboard</h4>
         <p>An interactive dashboard with real-time KPIs and colourful data visualizations.</p>
+        <a href="projects/dashboard.html" class="btn">View Project</a>
       </div>
       <div class="card">
         <h4>Business Insights Report</h4>
         <p>A deep-dive analysis transforming sales & customer data into clear strategies.</p>
+        <a href="projects/insights.html" class="btn">View Project</a>
       </div>
       <div class="card">
         <h4>Visualization Experiments</h4>
         <p>Creative data stories using charts, animations, and futuristic UI concepts.</p>
+        <a href="projects/visual.html" class="btn">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="internships" class="fade-up">
+    <h3>Internships</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Data Analyst Intern @ XYZ Corp</h4>
+        <p>Worked on cleaning, transforming, and visualizing company data.</p>
+        <a href="internships/xyz.html" class="btn">View Details</a>
+      </div>
+      <div class="card">
+        <h4>Business Analytics Intern @ ABC Ltd</h4>
+        <p>Prepared dashboards and insights for strategic decision-making.</p>
+        <a href="internships/abc.html" class="btn">View Details</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates" class="fade-up">
+    <h3>Certificates</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Python for Data Science</h4>
+        <p>Issued by Coursera</p>
+        <a href="certificates/python.html" class="btn">View Certificate</a>
+      </div>
+      <div class="card">
+        <h4>Data Visualization Expert</h4>
+        <p>Issued by Udemy</p>
+        <a href="certificates/dataviz.html" class="btn">View Certificate</a>
       </div>
     </div>
   </section>
@@ -218,9 +305,9 @@
   <section id="contact" class="fade-up">
     <h3>Contact Me</h3>
     <p>Interested in working together? Drop me a message.</p>
-    <p>📞 9704301178 | 📧 gowthammm20@gmail.com</p>
+    <p>📞 9704301178 | 📧 <a href="mailto:gowthammm20@gmail.com" style="color:var(--accent)">gowthammm20@gmail.com</a></p>
     <p><a href="https://www.linkedin.com/in/gowthammm20" target="_blank" style="color:var(--accent)">LinkedIn</a></p>
-    <button class="btn">Get in Touch</button>
+    <a href="#contact" class="btn">Get in Touch</a>
   </section>
 
   <footer>
@@ -238,8 +325,18 @@
       })
     },{threshold:0.2});
     document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+    // Skills animation
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const skillObserver = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const fill = e.target;
+          fill.style.width = fill.dataset.width;
+        }
+      });
+    },{threshold:0.6});
+    skillFills.forEach(f=>skillObserver.observe(f));
   </script>
 </body>
 </html>
-
-
