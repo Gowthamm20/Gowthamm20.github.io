@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gowtham's Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --glass: rgba(255,255,255,0.08);
+      --accent: #00fff7;
+      --accent-2: #ff00e6;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.4);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-gradient);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      backdrop-filter: blur(10px);
+      background: var(--glass);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top:0; z-index: 10;
+    }
+    header h1 {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: color .3s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--accent);
+      transition: transform .3s;
+    }
+    .btn:hover { transform: scale(1.05); }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+    section h3 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: var(--accent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px var(--accent-2);
+    }
+    .card h4 {
+      margin-bottom: 12px;
+      color: var(--accent-2);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(20px); transition: all .6s ease; }
+    .fade-up.show { opacity:1; transform:none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MyPortfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero fade-up">
+    <div>
+      <h2>Hi, I'm Gowtham 🚀</h2>
+      <p>I transform raw data into meaningful stories and insights — blending analysis, creativity, and clarity to drive decisions.</p>
+      <button class="btn">Explore My Work</button>
+    </div>
+  </div>
+
+  <section id="about" class="fade-up">
+    <h3>About Me</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>📊 Data Analyst</h4>
+        <p>Passionate about turning complex datasets into immersive, efficient, and impactful insights using modern analytical tools.</p>
+      </div>
+      <div class="card">
+        <h4>🎨 Data Storyteller</h4>
+        <p>Visualizing patterns with colours, gradients, and futuristic charts to make data speak clearly and beautifully.</p>
+      </div>
+      <div class="card">
+        <h4>🚀 Innovator</h4>
+        <p>Always exploring new tools, predictive models, and visualization techniques to stay ahead of the curve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="fade-up">
+    <h3>Skills</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>🐍 Python</h4>
+        <p>Pandas, NumPy, Matplotlib, Seaborn for data analysis & visualization.</p>
+      </div>
+      <div class="card">
+        <h4>🗄️ SQL</h4>
+        <p>Proficient in writing queries, joins, and optimizing databases for insights.</p>
+      </div>
+      <div class="card">
+        <h4>📊 Power BI</h4>
+        <p>Interactive dashboards & real-time business intelligence reporting.</p>
+      </div>
+      <div class="card">
+        <h4>📈 Tableau</h4>
+        <p>Building dynamic visualizations that tell clear and compelling data stories.</p>
+      </div>
+      <div class="card">
+        <h4>📝 Excel</h4>
+        <p>Data cleaning, pivot tables, advanced formulas & business reporting.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="fade-up">
+    <h3>Projects</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Data Dashboard</h4>
+        <p>An interactive dashboard with real-time KPIs and colourful data visualizations.</p>
+      </div>
+      <div class="card">
+        <h4>Business Insights Report</h4>
+        <p>A deep-dive analysis transforming sales & customer data into clear strategies.</p>
+      </div>
+      <div class="card">
+        <h4>Visualization Experiments</h4>
+        <p>Creative data stories using charts, animations, and futuristic UI concepts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="fade-up">
+    <h3>Contact Me</h3>
+    <p>Interested in working together? Let’s connect 🚀</p>
+    <div class="grid" style="max-width:600px; margin:30px auto; text-align:left;">
+      <div class="card">
+        <h4>📞 Phone</h4>
+        <p><a href="tel:+919704301178" style="color:var(--accent); text-decoration:none;">+91 9704301178</a></p>
+      </div>
+      <div class="card">
+        <h4>📧 Email</h4>
+        <p><a href="mailto:gowthammm20@gmail.com" style="color:var(--accent); text-decoration:none;">gowthammm20@gmail.com</a></p>
+      </div>
+      <div class="card">
+        <h4>💼 LinkedIn</h4>
+        <p><a href="https://www.linkedin.com/in/gowthammm20" target="_blank" style="color:var(--accent); text-decoration:none;">linkedin.com/in/gowthammm20</a></p>
+      </div>
+    </div>
+    <button class="btn" onclick="window.location.href='mailto:gowthammm20@gmail.com'">Get in Touch</button>
+  </section>
+
+  <footer>
+    © <span id="year"></span> MyPortfolio. Built with ❤️ futuristic vibes.
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Fade-up on scroll
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add("show");
+      })
+    },{threshold:0.2});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
+
