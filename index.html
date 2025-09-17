@@ -33,11 +33,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 16px 20px;
       backdrop-filter: blur(10px);
       background: var(--glass);
       border-bottom: 1px solid rgba(255,255,255,0.1);
       position: sticky; top:0; z-index: 10;
+      flex-wrap: wrap;
     }
     header h1 {
       font-weight: 800;
@@ -46,12 +47,17 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    nav {
+      margin-top: 8px;
+    }
     nav a {
-      margin-left: 24px;
+      margin-left: 16px;
       text-decoration: none;
       color: #fff;
       font-weight: 600;
       transition: color .3s;
+      display: inline-block;
+      margin-bottom: 6px;
     }
     nav a:hover { color: var(--accent); }
 
@@ -60,24 +66,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 80px 20px;
+      padding: 60px 20px;
       text-align: center;
     }
     .hero h2 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: 16px;
       background: linear-gradient(90deg,var(--accent),var(--accent-2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero p {
-      max-width: 700px;
-      margin: 0 auto 24px;
-      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
       opacity: 0.85;
     }
     .btn {
-      padding: 12px 24px;
+      padding: 12px 20px;
       border-radius: var(--radius);
       background: linear-gradient(90deg,var(--accent),var(--accent-2));
       border: none;
@@ -90,25 +96,25 @@
     .btn:hover { transform: scale(1.05); }
 
     section {
-      padding: 80px 20px;
+      padding: 60px 20px;
       text-align: center;
     }
     section h3 {
-      font-size: 2rem;
-      margin-bottom: 40px;
+      font-size: 1.8rem;
+      margin-bottom: 32px;
       color: var(--accent);
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 24px;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 20px;
+      max-width: 1000px;
       margin: 0 auto;
     }
     .card {
       background: var(--glass);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 20px;
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,0.08);
       transition: transform .3s, box-shadow .3s;
@@ -118,12 +124,13 @@
       box-shadow: 0 0 20px var(--accent-2);
     }
     .card h4 {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--accent-2);
+      font-size: 1.1rem;
     }
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 16px;
       border-top: 1px solid rgba(255,255,255,0.1);
       font-size: 0.9rem;
       opacity: 0.7;
@@ -132,6 +139,26 @@
     /* Animations */
     .fade-up { opacity: 0; transform: translateY(20px); transition: all .6s ease; }
     .fade-up.show { opacity:1; transform:none; }
+
+    /* 🔥 Mobile Responsive Fixes */
+    @media (max-width: 768px) {
+      header { flex-direction: column; align-items: flex-start; }
+      nav { display: flex; flex-wrap: wrap; gap: 10px; }
+      .hero h2 { font-size: 1.6rem; }
+      .hero p { font-size: 0.95rem; }
+      section h3 { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.2rem; }
+      nav a { margin-left: 0; font-size: 0.9rem; }
+      .hero { padding: 40px 15px; }
+      .hero h2 { font-size: 1.4rem; }
+      .hero p { font-size: 0.9rem; }
+      .btn { padding: 10px 16px; font-size: 0.9rem; }
+      .card { padding: 16px; }
+      .card h4 { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -139,7 +166,6 @@
     <h1>MyPortfolio</h1>
     <nav>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -171,32 +197,6 @@
     </div>
   </section>
 
-  <section id="skills" class="fade-up">
-    <h3>Skills</h3>
-    <div class="grid">
-      <div class="card">
-        <h4>🐍 Python</h4>
-        <p>Pandas, NumPy, Matplotlib, Seaborn for data analysis & visualization.</p>
-      </div>
-      <div class="card">
-        <h4>🗄️ SQL</h4>
-        <p>Proficient in writing queries, joins, and optimizing databases for insights.</p>
-      </div>
-      <div class="card">
-        <h4>📊 Power BI</h4>
-        <p>Interactive dashboards & real-time business intelligence reporting.</p>
-      </div>
-      <div class="card">
-        <h4>📈 Tableau</h4>
-        <p>Building dynamic visualizations that tell clear and compelling data stories.</p>
-      </div>
-      <div class="card">
-        <h4>📝 Excel</h4>
-        <p>Data cleaning, pivot tables, advanced formulas & business reporting.</p>
-      </div>
-    </div>
-  </section>
-
   <section id="projects" class="fade-up">
     <h3>Projects</h3>
     <div class="grid">
@@ -217,22 +217,10 @@
 
   <section id="contact" class="fade-up">
     <h3>Contact Me</h3>
-    <p>Interested in working together? Let’s connect 🚀</p>
-    <div class="grid" style="max-width:600px; margin:30px auto; text-align:left;">
-      <div class="card">
-        <h4>📞 Phone</h4>
-        <p><a href="tel:+919704301178" style="color:var(--accent); text-decoration:none;">+91 9704301178</a></p>
-      </div>
-      <div class="card">
-        <h4>📧 Email</h4>
-        <p><a href="mailto:gowthammm20@gmail.com" style="color:var(--accent); text-decoration:none;">gowthammm20@gmail.com</a></p>
-      </div>
-      <div class="card">
-        <h4>💼 LinkedIn</h4>
-        <p><a href="https://www.linkedin.com/in/gowthammm20" target="_blank" style="color:var(--accent); text-decoration:none;">linkedin.com/in/gowthammm20</a></p>
-      </div>
-    </div>
-    <button class="btn" onclick="window.location.href='mailto:gowthammm20@gmail.com'">Get in Touch</button>
+    <p>Interested in working together? Drop me a message.</p>
+    <p>📞 9704301178 | 📧 gowthammm20@gmail.com</p>
+    <p><a href="https://www.linkedin.com/in/gowthammm20" target="_blank" style="color:var(--accent)">LinkedIn</a></p>
+    <button class="btn">Get in Touch</button>
   </section>
 
   <footer>
@@ -253,4 +241,5 @@
   </script>
 </body>
 </html>
+
 
