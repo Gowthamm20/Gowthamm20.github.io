@@ -4,77 +4,186 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gowtham's Portfolio</title>
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    body {
-      margin: 0;
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --glass: rgba(255,255,255,0.08);
+      --accent: #00fff7;
+      --accent-2: #ff00e6;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.4);
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #f0f0f0;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg-gradient);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 20px;
-      background: rgba(255,255,255,0.05);
-      position: sticky; top: 0;
+      backdrop-filter: blur(10px);
+      background: var(--glass);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: sticky; top:0; z-index: 10;
+      flex-wrap: wrap;
     }
     header h1 {
-      font-size: 1.5rem;
       font-weight: 800;
-      background: linear-gradient(90deg, #00fff7, #ff00e6);
+      font-size: 1.5rem;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    nav {
+      margin-top: 8px;
+    }
     nav a {
-      margin-left: 15px;
+      margin-left: 16px;
+      text-decoration: none;
       color: #fff;
       font-weight: 600;
-      text-decoration: none;
+      transition: color .3s;
+      display: inline-block;
+      margin-bottom: 6px;
     }
-    nav a:hover { color: #00fff7; }
+    nav a:hover { color: var(--accent); }
 
     .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
       text-align: center;
-      padding: 80px 20px;
     }
     .hero h2 {
       font-size: 2rem;
-      background: linear-gradient(90deg, #00fff7, #ff00e6);
+      margin-bottom: 16px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 18px;
-      background: linear-gradient(90deg, #00fff7, #ff00e6);
-      color: #fff;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
+      opacity: 0.85;
     }
+    .btn {
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--accent);
+      transition: transform .3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover { transform: scale(1.05); }
+
     section {
       padding: 60px 20px;
       text-align: center;
     }
-    h3 { color: #00fff7; font-size: 1.8rem; margin-bottom: 30px; }
-    .card {
-      background: rgba(255,255,255,0.08);
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 600px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    section h3, section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 32px;
+      color: var(--accent);
     }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px var(--accent-2);
+    }
+    .card h4 {
+      margin-bottom: 10px;
+      color: var(--accent-2);
+      font-size: 1.1rem;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: all 0.8s ease-in-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Skills section new cards */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+    .skill-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 30px 20px;
+      color: #333;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: all 0.3s ease-in-out;
+    }
+    .skill-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    }
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #302b63;
+    }
+
     footer {
       text-align: center;
       padding: 16px;
       border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
       opacity: 0.7;
     }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      header { flex-direction: column; align-items: flex-start; }
+      nav { display: flex; flex-wrap: wrap; gap: 10px; }
+      .hero h2 { font-size: 1.6rem; }
+      section h2, section h3 { font-size: 1.5rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -84,56 +193,118 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#internships">Internship</a>
+      <a href="#internships">Internships</a>
       <a href="#certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <div class="hero">
-    <h2>Hi, I'm Gowtham 🚀</h2>
-    <p>I transform raw data into meaningful insights and powerful dashboards.</p>
-    <a href="#projects" class="btn">Explore My Work</a>
+  <div class="hero fade-up">
+    <div>
+      <h2>Hi, I'm Gowtham 🚀</h2>
+      <p>I transform raw data into meaningful stories and insights — blending analysis, creativity, and clarity to drive decisions.</p>
+      <a href="#projects" class="btn">Explore My Work</a>
+    </div>
   </div>
 
-  <section id="projects">
-    <h3>Projects</h3>
+  <section id="about" class="fade-up">
+    <h3>About Me</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>📊 Data Analyst</h4>
+        <p>Passionate about turning complex datasets into immersive, efficient, and impactful insights using modern analytical tools.</p>
+      </div>
+      <div class="card">
+        <h4>🎨 Data Storyteller</h4>
+        <p>Visualizing patterns with colours, gradients, and futuristic charts to make data speak clearly and beautifully.</p>
+      </div>
+      <div class="card">
+        <h4>🚀 Innovator</h4>
+        <p>Always exploring new tools, predictive models, and visualization techniques to stay ahead of the curve.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="fade-up">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <i class="fab fa-python skill-icon"></i>
+        <h3>Python</h3>
+        <p>Data Analysis, Automation, Visualization</p>
+      </div>
+
+      <div class="skill-card reveal">
+        <i class="fas fa-database skill-icon"></i>
+        <h3>SQL</h3>
+        <p>Database Management, Queries, Optimization</p>
+      </div>
+
+      <div class="skill-card reveal">
+        <i class="fas fa-chart-line skill-icon"></i>
+        <h3>Tableau / Power BI</h3>
+        <p>Interactive Dashboards, BI Solutions</p>
+      </div>
+
+      <div class="skill-card reveal">
+        <i class="fas fa-project-diagram skill-icon"></i>
+        <h3>Data Visualization</h3>
+        <p>Storytelling with Data, Insights Presentation</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="fade-up">
+    <h2>Projects</h2>
     <div class="card">
-      <h4>Smart Grid Monitoring & Analytics System ⚡</h4>
-      <p>Data-driven monitoring and optimization system for smart grid performance with Power BI dashboards.</p>
+      <h3>Smart Grid Monitoring and Analytics System</h3>
+      <p>
+        A data-driven system for monitoring, analyzing, and optimizing smart grid performance using real-time data and Power BI dashboards.
+      </p>
       <a href="smartgrid.html" class="btn">🔗 View Project</a>
     </div>
   </section>
 
-  <section id="internships">
-    <h3>Internship</h3>
+  <!-- Internship -->
+  <section id="internships" class="fade-up">
+    <h2>Internship</h2>
     <div class="card">
-      <h4>Company: Aroha Technologies Pvt. Ltd – Bengaluru</h4>
+      <h3>Company: Aroha Technologies Pvt. Ltd – Bengaluru</h3>
       <p><strong>Role:</strong> Data Engineering Intern</p>
       <a href="aroha.html" class="btn">🔗 View Internship</a>
     </div>
   </section>
 
-  <section id="certificates">
+  <!-- Certificates -->
+  <section id="certificates" class="fade-up">
     <h3>Certificates</h3>
-    <div class="card">
-      <h4>Data Engineering Intern Certificate</h4>
-      <a href="cert-de.html" class="btn">View Certificate</a>
-    </div>
-    <div class="card">
-      <h4>Cisco Data Analytics Essentials</h4>
-      <a href="cert-cisco.html" class="btn">View Certificate</a>
-    </div>
-    <div class="card">
-      <h4>Deloitte Australia – Data Analytics Job Simulation</h4>
-      <a href="cert-deloitte.html" class="btn">View Certificate</a>
+    <div class="grid">
+      <div class="card">
+        <h4>Data Engineering Intern Certificate</h4>
+        <a href="cert-de.html" class="btn">View Certificate</a>
+      </div>
+      <div class="card">
+        <h4>Cisco Data Analytics Essentials Certificate</h4>
+        <a href="cert-cisco.html" class="btn">View Certificate</a>
+      </div>
+      <div class="card">
+        <h4>Deloitte Australia – Data Analytics Job Simulation</h4>
+        <a href="cert-deloitte.html" class="btn">View Certificate</a>
+      </div>
     </div>
   </section>
 
-  <section id="contact">
+  <!-- Contact -->
+  <section id="contact" class="fade-up">
     <h3>Contact Me</h3>
-    <p>📞 9704301178 | 📧 <a href="mailto:gowthammm20@gmail.com" style="color:#00fff7">gowthammm20@gmail.com</a></p>
-    <p><a href="https://www.linkedin.com/in/gowthammm20" target="_blank" style="color:#ff00e6">LinkedIn</a></p>
+    <p>Interested in working together? Drop me a message.</p>
+    <p>📞 9704301178 | 📧 <a href="mailto:gowthammm20@gmail.com" style="color:var(--accent)">gowthammm20@gmail.com</a></p>
+    <p><a href="https://www.linkedin.com/in/gowthammm20" target="_blank" style="color:var(--accent)">LinkedIn</a></p>
+    <a href="#contact" class="btn">Get in Touch</a>
   </section>
 
   <footer>
@@ -141,7 +312,23 @@
   </footer>
 
   <script>
+    // Year update
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll(".reveal");
+      for (let i = 0; i < reveals.length; i++) {
+        let windowHeight = window.innerHeight;
+        let elementTop = reveals[i].getBoundingClientRect().top;
+        let elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
   </script>
 </body>
 </html>
